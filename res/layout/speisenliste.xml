@@ -12,8 +12,11 @@
 
         <TextView
             android:id="@+id/vorspeisenTitel"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:gravity="center_horizontal"
+			android:background="@color/darkblue"
             android:text="Vorspeisen" />
 
         <TableLayout
@@ -26,8 +29,11 @@
 
         <TextView
             android:id="@+id/hauptspeisenTitel"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:gravity="center_horizontal"
+			android:background="@color/darkred"
             android:layout_below="@+id/vorspeisen"
             android:text="Hauptspeisen" />
 
@@ -41,8 +47,11 @@
 
         <TextView
             android:id="@+id/nachspeisenTitel"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:gravity="center_horizontal"
+			android:background="@color/orange"
             android:layout_below="@+id/hauptspeisen"
             android:text="Nachspeisen" />
 

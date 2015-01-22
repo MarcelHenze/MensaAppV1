@@ -1,6 +1,7 @@
 package de.lette;
 
 import android.app.ActionBar;
+import android.app.ActionBar.LayoutParams;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -43,8 +44,9 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	private ListView speisenliste;
 	private ActionBarDrawerToggle mDrawerToggle;
 	private CharSequence mDrawerTitle, mTitle;
-	private int vorspeisenZahl, hauptspeisenZahl, nachspeisenZahl;
-	TableLayout vorspeisen, hauptspeisen, nachspeisen;
+	private static int vorspeisenZahl;
+	private static int hauptspeisenZahl;
+	private static int nachspeisenZahl;
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -64,10 +66,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         vorspeisenZahl = 2;
         hauptspeisenZahl = 3;
         nachspeisenZahl = 2;
-        
-		vorspeisen = (TableLayout) findViewById(R.id.vorspeisen);
-		hauptspeisen = (TableLayout) findViewById(R.id.hauptspeisen);
-		nachspeisen = (TableLayout) findViewById(R.id.nachspeisen);
 		
 		//setzeSpeisen();
         
@@ -250,6 +248,57 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.speisenliste, container, false);
+            TableLayout vorspeisen  = (TableLayout) rootView.findViewById(R.id.vorspeisen);
+            TableLayout hauptspeisen  = (TableLayout) rootView.findViewById(R.id.hauptspeisen);
+            TableLayout nachspeisen  = (TableLayout) rootView.findViewById(R.id.nachspeisen);
+            for (int i = 0; i < vorspeisenZahl; i++)
+            {
+                TableRow tr = new TableRow(getActivity());
+                tr.setId(100 + i);
+                TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                tr.setLayoutParams(lp);
+                
+    	        ImageView iv = new ImageView(getActivity());
+    	        TextView tv = new TextView(getActivity());
+    	        
+    	        iv.setImageResource(R.drawable.vorspeise);
+    	        tv.setText("VorspeisenText");
+    	        tr.addView(iv);
+    	        tr.addView(tv);
+    	        vorspeisen.addView(tr,i);
+            }
+            for (int i = 0; i < hauptspeisenZahl; i++)
+            {
+                TableRow tr = new TableRow(getActivity());
+                tr.setId(100 + i);
+                TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                tr.setLayoutParams(lp);
+                
+    	        ImageView iv = new ImageView(getActivity());
+    	        TextView tv = new TextView(getActivity());
+    	        
+    	        iv.setImageResource(R.drawable.hauptspeise);
+    	        tv.setText("HauptspeisenText");
+    	        tr.addView(iv);
+    	        tr.addView(tv);
+    	        hauptspeisen.addView(tr,i);
+            }
+            for (int i = 0; i < nachspeisenZahl; i++)
+            {
+                TableRow tr = new TableRow(getActivity());
+                tr.setId(100 + i);
+                TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                tr.setLayoutParams(lp);
+                
+    	        ImageView iv = new ImageView(getActivity());
+    	        TextView tv = new TextView(getActivity());
+    	        
+    	        iv.setImageResource(R.drawable.nachspeise);
+    	        tv.setText("NachspeisenText");
+    	        tr.addView(iv);
+    	        tr.addView(tv);
+    	        nachspeisen.addView(tr,i);
+            }
             return rootView;
         }
     }
@@ -269,52 +318,52 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         }
     }
     
-    private void setzeSpeisen(){
-    	for (int i = 0; i < vorspeisenZahl; i++) {
-	        TableRow row = new TableRow(this);
-	        TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
-	        row.setLayoutParams(lp);
-	        ImageView iv = new ImageView(this);
-	        TextView tv = new TextView(this);
-	        
-	        iv.setImageResource(R.drawable.vorspeise);
-	        
-	        tv.setText("VorspeisenText");
-	        
-	        row.addView(iv);
-	        row.addView(tv);
-	        vorspeisen.addView(row,i);
-	    }
-		for (int i = 0; i < hauptspeisenZahl; i++) {
-	        TableRow row = new TableRow(this);
-	        TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
-	        row.setLayoutParams(lp);
-	        ImageView iv = new ImageView(this);
-	        TextView tv = new TextView(this);
-	        
-	        iv.setImageResource(R.drawable.hauptspeise);
-	        
-	        tv.setText("HauptspeisenText");
-	        
-	        row.addView(iv);
-	        row.addView(tv);
-	        hauptspeisen.addView(row,i);
-	    }
-		for (int i = 0; i < nachspeisenZahl; i++) {
-	        TableRow row = new TableRow(this);
-	        TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
-	        row.setLayoutParams(lp);
-	        ImageView iv = new ImageView(this);
-	        TextView tv = new TextView(this);
-	        
-	        iv.setImageResource(R.drawable.nachspeise);
-	        
-	        tv.setText("Nachspeisentext");
-	        
-	        row.addView(iv);
-	        row.addView(tv);
-	        nachspeisen.addView(row,i);
-	    }
-    }
+//    private void setzeSpeisen(){
+//    	for (int i = 0; i < vorspeisenZahl; i++) {
+//	        TableRow row = new TableRow(this);
+//	        TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+//	        row.setLayoutParams(lp);
+//	        ImageView iv = new ImageView(this);
+//	        TextView tv = new TextView(this);
+//	        
+//	        iv.setImageResource(R.drawable.vorspeise);
+//	        
+//	        tv.setText("VorspeisenText");
+//	        
+//	        row.addView(iv);
+//	        row.addView(tv);
+//	        vorspeisen.addView(row,i);
+//	    }
+//		for (int i = 0; i < hauptspeisenZahl; i++) {
+//	        TableRow row = new TableRow(this);
+//	        TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+//	        row.setLayoutParams(lp);
+//	        ImageView iv = new ImageView(this);
+//	        TextView tv = new TextView(this);
+//	        
+//	        iv.setImageResource(R.drawable.hauptspeise);
+//	        
+//	        tv.setText("HauptspeisenText");
+//	        
+//	        row.addView(iv);
+//	        row.addView(tv);
+//	        hauptspeisen.addView(row,i);
+//	    }
+//		for (int i = 0; i < nachspeisenZahl; i++) {
+//	        TableRow row = new TableRow(this);
+//	        TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+//	        row.setLayoutParams(lp);
+//	        ImageView iv = new ImageView(this);
+//	        TextView tv = new TextView(this);
+//	        
+//	        iv.setImageResource(R.drawable.nachspeise);
+//	        
+//	        tv.setText("Nachspeisentext");
+//	        
+//	        row.addView(iv);
+//	        row.addView(tv);
+//	        nachspeisen.addView(row,i);
+//	    }
+//    }
 
 }
