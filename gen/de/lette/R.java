@@ -27,21 +27,32 @@ public final class R {
     }
     public static final class drawable {
         public static final int drawer_shadow=0x7f020000;
-        public static final int ic_drawer=0x7f020001;
-        public static final int ic_launcher=0x7f020002;
+        public static final int hauptspeise=0x7f020001;
+        public static final int ic_drawer=0x7f020002;
+        public static final int ic_launcher=0x7f020003;
+        public static final int nachspeise=0x7f020004;
+        public static final int vorspeise=0x7f020005;
     }
     public static final class id {
-        public static final int action_settings=0x7f090005;
+        public static final int action_settings=0x7f09000c;
         public static final int content_frame=0x7f090001;
         public static final int drawer_layout=0x7f090000;
+        public static final int hauptspeisen=0x7f090009;
+        public static final int hauptspeisenTitel=0x7f090008;
+        public static final int hscrollview=0x7f090005;
         public static final int left_drawer=0x7f090003;
+        public static final int nachspeisen=0x7f09000b;
+        public static final int nachspeisenTitel=0x7f09000a;
         public static final int pager=0x7f090002;
         public static final int section_label=0x7f090004;
+        public static final int vorspeisen=0x7f090007;
+        public static final int vorspeisenTitel=0x7f090006;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
         public static final int drawer_list_item=0x7f030001;
         public static final int fragment_main=0x7f030002;
+        public static final int speisenliste=0x7f030003;
     }
     public static final class menu {
         public static final int main=0x7f080000;

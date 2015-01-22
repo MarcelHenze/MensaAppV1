@@ -18,7 +18,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -36,9 +40,11 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     	
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
+	private ListView speisenliste;
 	private ActionBarDrawerToggle mDrawerToggle;
-	private CharSequence mDrawerTitle;
-	private CharSequence mTitle;
+	private CharSequence mDrawerTitle, mTitle;
+	private int vorspeisenZahl, hauptspeisenZahl, nachspeisenZahl;
+	TableLayout vorspeisen, hauptspeisen, nachspeisen;
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -54,6 +60,16 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
         wochen = getResources().getStringArray(R.array.wochen);
         wochentage = getResources().getStringArray(R.array.wochentage);
+        
+        vorspeisenZahl = 2;
+        hauptspeisenZahl = 3;
+        nachspeisenZahl = 2;
+        
+		vorspeisen = (TableLayout) findViewById(R.id.vorspeisen);
+		hauptspeisen = (TableLayout) findViewById(R.id.hauptspeisen);
+		nachspeisen = (TableLayout) findViewById(R.id.nachspeisen);
+		
+		//setzeSpeisen();
         
 		mTitle = mDrawerTitle = getTitle();
 
@@ -102,6 +118,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		// Set the OnItemClickListener so something happens when a 
 		// user clicks on an item.
 		mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+
+        mDrawerList.setItemChecked(0, true);
 		
 		// Enable ActionBar app icon to behave as action to toggle nav drawer
 		getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -231,7 +249,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            View rootView = inflater.inflate(R.layout.speisenliste, container, false);
             return rootView;
         }
     }
@@ -244,13 +262,59 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
             // Highlight the selected item, update the title, and close the drawer
             // update selected item and title, then close the drawer
             mDrawerList.setItemChecked(position, true);
-            setTitle("......");
 
-            String text= "menu click... should be implemented";
-            Toast.makeText(MainActivity.this, text, Toast.LENGTH_LONG).show();
+            String text= "Wähle "+wochen[position]+" aus.";
+            Toast.makeText(MainActivity.this, text, Toast.LENGTH_SHORT).show();
             mDrawerLayout.closeDrawer(mDrawerList);
-
         }
+    }
+    
+    private void setzeSpeisen(){
+    	for (int i = 0; i < vorspeisenZahl; i++) {
+	        TableRow row = new TableRow(this);
+	        TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+	        row.setLayoutParams(lp);
+	        ImageView iv = new ImageView(this);
+	        TextView tv = new TextView(this);
+	        
+	        iv.setImageResource(R.drawable.vorspeise);
+	        
+	        tv.setText("VorspeisenText");
+	        
+	        row.addView(iv);
+	        row.addView(tv);
+	        vorspeisen.addView(row,i);
+	    }
+		for (int i = 0; i < hauptspeisenZahl; i++) {
+	        TableRow row = new TableRow(this);
+	        TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+	        row.setLayoutParams(lp);
+	        ImageView iv = new ImageView(this);
+	        TextView tv = new TextView(this);
+	        
+	        iv.setImageResource(R.drawable.hauptspeise);
+	        
+	        tv.setText("HauptspeisenText");
+	        
+	        row.addView(iv);
+	        row.addView(tv);
+	        hauptspeisen.addView(row,i);
+	    }
+		for (int i = 0; i < nachspeisenZahl; i++) {
+	        TableRow row = new TableRow(this);
+	        TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+	        row.setLayoutParams(lp);
+	        ImageView iv = new ImageView(this);
+	        TextView tv = new TextView(this);
+	        
+	        iv.setImageResource(R.drawable.nachspeise);
+	        
+	        tv.setText("Nachspeisentext");
+	        
+	        row.addView(iv);
+	        row.addView(tv);
+	        nachspeisen.addView(row,i);
+	    }
     }
 
 }
