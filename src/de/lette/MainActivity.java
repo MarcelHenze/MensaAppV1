@@ -1,7 +1,6 @@
 package de.lette;
 
 import android.app.ActionBar;
-import android.app.ActionBar.LayoutParams;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -27,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+@SuppressWarnings("deprecation")
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
 
     /**
@@ -41,7 +41,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     	
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
-	private ListView speisenliste;
+//	private ListView speisenliste;
 	private ActionBarDrawerToggle mDrawerToggle;
 	private CharSequence mDrawerTitle, mTitle;
 	private static int vorspeisenZahl;
@@ -306,13 +306,13 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
 
         @Override
-        public void onItemClick(AdapterView parent, View view, int position,long id) {
+        public void onItemClick(@SuppressWarnings("rawtypes") AdapterView parent, View view, int position,long id) {
 
             // Highlight the selected item, update the title, and close the drawer
             // update selected item and title, then close the drawer
             mDrawerList.setItemChecked(position, true);
 
-            String text= "Wähle "+wochen[position]+" aus.";
+            String text= "Wï¿½hle "+wochen[position]+" aus.";
             Toast.makeText(MainActivity.this, text, Toast.LENGTH_SHORT).show();
             mDrawerLayout.closeDrawer(mDrawerList);
         }
