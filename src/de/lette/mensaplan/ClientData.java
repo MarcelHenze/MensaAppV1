@@ -48,11 +48,7 @@ public class ClientData {
 	 * @return ein Set, welches alle Speisen beinhaltet, die der SpeiseArt entsprechen oder ein leeres Set wenn keine Speisen gefunden wurden
 	 */
 	public Set<Speise> getSpeisen(SpeiseArt speiseArt) {
-		Set<Speise> returnSet = new LinkedHashSet<Speise>();
-		for(Speise s : speisen) {
-			if(s.getArt() == speiseArt) returnSet.add(s);
-		}
-		return returnSet;
+		return getSpeisen(new SpeiseArt[] { speiseArt });
 	}
 
 	/**
