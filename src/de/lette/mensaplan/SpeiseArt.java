@@ -7,7 +7,7 @@ package de.lette.mensaplan;
  *
  */
 public enum SpeiseArt {
-	VORSPEISE("Vorspeise"), VEGETARISCH("Vegetarisch"), VOLLKOST("Vollkost"), BEILAGEN("Beilagen"), Dessert("Dessert"), LEICHTEVOLLKOST("Leichte Vollkost"), GEMÜSETELLER("Gemüseteller");
+	VORSPEISE("Vorspeise"), VEGETARISCH("Vegetarisch"), VOLLKOST("Vollkost"), BEILAGEN("Beilagen"), DESSERT("Dessert"), LEICHTEVOLLKOST("Leichte Vollkost"), GEMÜSETELLER("Gemüseteller");
 
 	private String typ;
 
