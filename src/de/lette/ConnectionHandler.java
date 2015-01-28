@@ -19,7 +19,7 @@ public class ConnectionHandler {
 	public static String urlToServer = "http://localhost:8080/MensaPlan/AppRequestHandler?startdate=2014-01-08";
 
 	/**
-	 * Diese Methode stellt eine Verbindung zum MensaplanServer her und läd die gewünschten Daten herunter und gibt sie als ClientData-Objekt zurück.
+	 * Diese Methode stellt eine Verbindung zum MensaplanServer her, lädt die gewünschten Daten herunter und gibt sie als ClientData-Objekt zurück.
 	 * 
 	 * @return das ClientData-Objekt
 	 * @throws IOException
