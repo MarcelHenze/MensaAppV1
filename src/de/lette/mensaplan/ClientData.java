@@ -1,6 +1,8 @@
 package de.lette.mensaplan;
 
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.Map;
 import java.util.Set;
 
 import com.google.gson.Gson;
@@ -68,6 +70,46 @@ public class ClientData {
 		}
 		return returnSet;
 	}
+	
+	/**
+	 * Sucht die Speise für den gegebenen Termin und gibt sie zurück.
+	 * 
+	 * @param termin
+	 *            der Termin, zu dem die Speise gefunden werden soll
+	 * @param speisen
+	 *            die Speisen, die durchsucht werden müssen
+	 * @return die Speise zu dem Termin oder null, falls keine Speise zum Termin existiert.
+	 */
+	public Speise getSpeisen(Termin termin, Set<Speise> speisen) {
+		for(Speise s : speisen) {
+			if(termin.getSpeiseId() == s.getId()) {
+				return s;
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * Sucht alle Speisen für die gegebenen Termine und gibt sie in einer Map zurück.
+	 * Jedem Termin sind n Speisen zugeordnet.
+	 * 
+	 * @param termine
+	 *            die Termine, zu denen die Speisen gesucht werden sollen
+	 * @param speisen
+	 *            die Speisen, die durchsucht werden müssen
+	 * @return eine Map mit den Speisen zu den Terminen oder eine leere Map wenn keine Speisen zu Terminen gefunden wurden
+	 */
+	public Map<Termin, Speise> getSpeisen(Termin[] termine, Set<Speise> speisen) {
+		Map<Termin, Speise> returnMap = new LinkedHashMap<Termin, Speise>();
+		for(Termin t : termine) {
+			for(Speise s : speisen) {
+				if(t.getSpeiseId() == s.getId()) {
+					returnMap.put(t, s);
+				}
+			}
+		}
+		return returnMap;
+	}
 
 	public void setSpeisen(Set<Speise> speisen) {
 		this.speisen = speisen;
@@ -75,6 +117,24 @@ public class ClientData {
 
 	public Set<Zusatzstoff> getZusatzstoffe() {
 		return zusatzstoffe;
+	}
+	
+	/**
+	 * Sucht zu einer Speise alle Zusatzstoffe und gibt sie in einem Set zurück.
+	 * 
+	 * @param speise die Speise, deren Zusatzstoffe ermittelt werden sollen.
+	 * @return die Zusatzstoffe zu der Speise in einem Set oder ein leeres Set wenn keine Zusatzstoffe gefunden wurden.
+	 */
+	public Set<Zusatzstoff> getZusatzstoffe(Speise speise) {
+		Set<Zusatzstoff> returnSet = new LinkedHashSet<Zusatzstoff>();
+		for(Zusatzstoff z : zusatzstoffe) {
+			for(Integer zI : speise.getZusatzstoffe()) {
+				if(zI == z.getNummer()) {
+					returnSet.add(z);
+				}
+			}
+		}
+		return returnSet;
 	}
 
 	public void setZusatzstoffe(Set<Zusatzstoff> zusatzstoffe) {
