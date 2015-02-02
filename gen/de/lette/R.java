@@ -39,12 +39,46 @@ public final class R {
         public static final int activity_vertical_margin=0x7f060001;
     }
     public static final class drawable {
-        public static final int drawer_shadow=0x7f020000;
-        public static final int hauptspeise=0x7f020001;
-        public static final int ic_drawer=0x7f020002;
-        public static final int ic_launcher=0x7f020003;
-        public static final int nachspeise=0x7f020004;
-        public static final int vorspeise=0x7f020005;
+        public static final int ab_background_textured_mensa=0x7f020000;
+        public static final int ab_bottom_solid_mensa=0x7f020001;
+        public static final int ab_solid_mensa=0x7f020002;
+        public static final int ab_stacked_solid_mensa=0x7f020003;
+        public static final int ab_texture_tile_mensa=0x7f020004;
+        public static final int ab_transparent_mensa=0x7f020005;
+        public static final int border=0x7f020006;
+        public static final int btn_cab_done_default_mensa=0x7f020007;
+        public static final int btn_cab_done_focused_mensa=0x7f020008;
+        public static final int btn_cab_done_mensa=0x7f020009;
+        public static final int btn_cab_done_pressed_mensa=0x7f02000a;
+        public static final int cab_background_bottom_mensa=0x7f02000b;
+        public static final int cab_background_top_mensa=0x7f02000c;
+        public static final int drawer_shadow=0x7f02000d;
+        public static final int hauptspeise=0x7f02000e;
+        public static final int ic_drawer=0x7f02000f;
+        public static final int ic_launcher=0x7f020010;
+        public static final int lette_logo=0x7f020011;
+        public static final int list_focused_mensa=0x7f020012;
+        public static final int list_pressed_mensa=0x7f020013;
+        public static final int menu_dropdown_panel_mensa=0x7f020014;
+        public static final int nachspeise=0x7f020015;
+        public static final int progress_bg_mensa=0x7f020016;
+        public static final int progress_horizontal_mensa=0x7f020017;
+        public static final int progress_primary_mensa=0x7f020018;
+        public static final int progress_secondary_mensa=0x7f020019;
+        public static final int selectable_background_mensa=0x7f02001a;
+        public static final int spinner_ab_default_mensa=0x7f02001b;
+        public static final int spinner_ab_disabled_mensa=0x7f02001c;
+        public static final int spinner_ab_focused_mensa=0x7f02001d;
+        public static final int spinner_ab_pressed_mensa=0x7f02001e;
+        public static final int spinner_background_ab_mensa=0x7f02001f;
+        public static final int tab_indicator_ab_mensa=0x7f020020;
+        public static final int tab_selected_focused_mensa=0x7f020021;
+        public static final int tab_selected_mensa=0x7f020022;
+        public static final int tab_selected_pressed_mensa=0x7f020023;
+        public static final int tab_unselected_focused_mensa=0x7f020024;
+        public static final int tab_unselected_mensa=0x7f020025;
+        public static final int tab_unselected_pressed_mensa=0x7f020026;
+        public static final int vorspeise=0x7f020027;
     }
     public static final class id {
         public static final int action_settings=0x7f0a000c;
@@ -78,6 +112,10 @@ public final class R {
         public static final int hello_world=0x7f070001;
     }
     public static final class style {
+        public static final int ActionBar_Solid_Mensa=0x7f080003;
+        public static final int ActionBar_Transparent_Mensa=0x7f080004;
+        public static final int ActionBarTabStyle_Mensa=0x7f080007;
+        public static final int ActionButton_CloseMode_Mensa=0x7f08000a;
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
@@ -104,5 +142,13 @@ public final class R {
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f080001;
+        public static final int DropDownListView_Mensa=0x7f080006;
+        public static final int DropDownNav_Mensa=0x7f080008;
+        public static final int PopupMenu_Mensa=0x7f080005;
+        public static final int ProgressBar_Mensa=0x7f080009;
+        public static final int Theme_Mensa=0x7f080002;
+        /**  this style is only referenced in a Light.DarkActionBar based theme 
+         */
+        public static final int Theme_Mensa_Widget=0x7f08000b;
     }
 }

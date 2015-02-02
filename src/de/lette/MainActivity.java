@@ -2,6 +2,7 @@ package de.lette;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 
 import org.apache.http.client.ClientProtocolException;
 
@@ -17,6 +18,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.text.format.Time;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,6 +29,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
 import de.lette.mensaplan.ClientData;
@@ -51,7 +54,8 @@ public class MainActivity extends FragmentActivity implements
 	private ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
 	private CharSequence mDrawerTitle, mTitle;
-//	private static ArrayList<Speise> testSpeisen = new ArrayList<Speise>();
+	private ClientData data;
+	private ArrayList<Speise> speisen = new ArrayList<Speise>();
 
 	/**
 	 * The {@link ViewPager} that will host the section contents.
@@ -67,26 +71,31 @@ public class MainActivity extends FragmentActivity implements
 
 		wochen = getResources().getStringArray(R.array.wochen);
 		wochentage = getResources().getStringArray(R.array.wochentage);
+//		DateFormat df = DateFormat.getDateInstance(DateFormat.LONG, Locale.GERMANY);
 
-//		testSpeisen.add(new Speise(0, "Hamburger", SpeiseArt.VOLLKOST, false,
-//				"Fleisch", 9000, 9000, 9000, 9000));
-//		testSpeisen.add(new Speise(1, "Caesar Salat", SpeiseArt.VORSPEISE,
-//				false, "Salat", 100, 100, 100, 100));
-//		testSpeisen.add(new Speise(2, "Suppe", SpeiseArt.VORSPEISE, false,
-//				"Suppe", 200, 200, 200, 200));
-//		testSpeisen.add(new Speise(3, "Staak", SpeiseArt.VOLLKOST, false,
-//				"Fleisch", 9000, 9000, 9000, 9000));
-//		testSpeisen.add(new Speise(4, "Bio Burger", SpeiseArt.VOLLKOST, true,
-//				"Bio Fleisch", 0, 0, 0, 0));
-//		testSpeisen.add(new Speise(5, "Eis im Eimer", SpeiseArt.DESSERT, false,
-//				"Fleisch", 9000, 9000, 9000, 9000));
+		try {
+			data = ConnectionHandler.getClientData();
+//			for(Termin t : data.getTermine()){
+//				int Tag = 0;
+//				speisen.add(Tag, data.getSpeisen(t, data.getSpeisen()));
+//				Log.e("Heute", ""+t.getDatum());
+//			}			
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		mTitle = mDrawerTitle = getTitle();
 
 		// Set up the action bar.
 		final ActionBar actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
+		
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the activity.
 		mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
@@ -94,17 +103,17 @@ public class MainActivity extends FragmentActivity implements
 		// Set up the ViewPager with the sections adapter.
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
-
+		
 		// When swiping between different sections, select the corresponding
 		// tab. We can also use ActionBar.Tab#select() to do this if we have
 		// a reference to the Tab.
-		mViewPager
-				.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+		mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
 					@Override
 					public void onPageSelected(int position) {
 						actionBar.setSelectedNavigationItem(position);
 					}
 				});
+		
 
 		// For each of the sections in the app, add a tab to the action bar.
 		for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
@@ -121,7 +130,7 @@ public class MainActivity extends FragmentActivity implements
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
 		// set a custom shadow that overlays the main content when the drawer
-		// oepns
+		// opens
 		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,
 				GravityCompat.START);
 
@@ -153,7 +162,11 @@ public class MainActivity extends FragmentActivity implements
 		};
 
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
-
+		
+		//Setzt den Tab auf den Aktuellen Tag.
+		Time today = new Time(Time.getCurrentTimezone());
+		today.setToNow();
+		mViewPager.setCurrentItem(today.weekDay-1);
 	}
 
 	@Override
@@ -279,23 +292,28 @@ public class MainActivity extends FragmentActivity implements
 
 			try {
 				ClientData data = ConnectionHandler.getClientData();
-				
+
 				for (Termin t : data.getTermine()) {
 					Speise speise = data.getSpeisen(t, data.getSpeisen());
-//					Log.d("MensaPlan", speise.getName() +" am " +t.getDatum());
+					// Log.d("MensaPlan", speise.getName() +" am "
+					// +t.getDatum());
 					TableRow tr = new TableRow(getActivity());
-					TableRow.LayoutParams lp = new TableRow.LayoutParams(
-							TableRow.LayoutParams.WRAP_CONTENT);
+					TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
 					tr.setLayoutParams(lp);
 					ImageView iv = new ImageView(getActivity());
+					iv.setX(10);
 					TextView tv = new TextView(getActivity());
-					tv.setText(speise.getName());
+					tv.setLayoutParams(new TableRow.LayoutParams(0, LayoutParams.WRAP_CONTENT, 1f));
+					tv.setText(speise.getName()+", "+speise.getKcal()+" kcal, "+speise.getEiweiß()+" Eiweiße, "+speise.getFett()+" Fette, "+
+					speise.getKohlenhydrate()+" Kohlenhydrate.\r\n");
+					tv.append("Beachte: "+speise.getBeachte()+"\r\n");
+					tv.append("Preis: "+ t.getPreis()+"€");
 					tr.addView(iv);
 					tr.addView(tv);
-					if(speise.getArt() == SpeiseArt.VORSPEISE){
+					if (speise.getArt() == SpeiseArt.VORSPEISE) {
 						iv.setImageResource(R.drawable.vorspeise);
 						vorspeisen.addView(tr);
-					}else if(speise.getArt() == SpeiseArt.VOLLKOST){
+					} else if (speise.getArt() == SpeiseArt.VOLLKOST) {
 						iv.setImageResource(R.drawable.hauptspeise);
 						hauptspeisen.addView(tr);
 					} else if (speise.getArt() == SpeiseArt.DESSERT) {
@@ -309,40 +327,9 @@ public class MainActivity extends FragmentActivity implements
 				e.printStackTrace();
 			} catch (URISyntaxException e) {
 				e.printStackTrace();
-			} catch(Exception e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
-			
-			
-//			for (Speise speise : testSpeisen) {
-//				TableRow tr = new TableRow(getActivity());
-//				TableRow.LayoutParams lp = new TableRow.LayoutParams(
-//						TableRow.LayoutParams.WRAP_CONTENT);
-//				tr.setLayoutParams(lp);
-//
-//				ImageView iv = new ImageView(getActivity());
-//				TextView tv = new TextView(getActivity());
-//				if (speise.getArt() == SpeiseArt.VORSPEISE) {
-//					iv.setImageResource(R.drawable.vorspeise);
-//					tv.setText("VorspeisenText");
-//					tr.addView(iv);
-//					tr.addView(tv);
-//					vorspeisen.addView(tr);
-//				} else if (speise.getArt() == SpeiseArt.VOLLKOST) {
-//					iv.setImageResource(R.drawable.hauptspeise);
-//					tv.setText("HauptspeisenText");
-//					tr.addView(iv);
-//					tr.addView(tv);
-//					hauptspeisen.addView(tr);
-//				} else if (speise.getArt() == SpeiseArt.DESSERT) {
-//					iv.setImageResource(R.drawable.nachspeise);
-//					tv.setText("NachspeisenText");
-//					tr.addView(iv);
-//					tr.addView(tv);
-//					nachspeisen.addView(tr);
-//				}
-//			}
 			return rootView;
 		}
 	}
