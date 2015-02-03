@@ -8,14 +8,11 @@ import java.net.HttpURLConnection;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.sql.Date;
-import java.util.Calendar;
 import java.util.LinkedHashSet;
-import java.util.Locale;
 import java.util.Set;
 
 import org.apache.http.client.ClientProtocolException;
 
-import android.text.format.DateFormat;
 import android.text.format.Time;
 import android.util.Log;
 
@@ -120,6 +117,7 @@ public class ConnectionHandler {
 	 *             konnte oder Fehler beim Lesen auftreten.
 	 * @throws URISyntaxException
 	 */
+	@SuppressWarnings("unused")
 	private static ClientData getClientDataFromServer() throws IOException,
 			URISyntaxException, ClientProtocolException {
 		// Prepare Connection //
