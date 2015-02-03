@@ -39,6 +39,11 @@ public class Termin {
 	public Date getDatum() {
 		return datum;
 	}
+	
+	public java.util.Date getJavaDatum() {
+		java.util.Date returnDate = new java.util.Date(datum.getTime());
+		return returnDate;
+	}
 
 	public void setDatum(Date datum) {
 		this.datum = datum;
