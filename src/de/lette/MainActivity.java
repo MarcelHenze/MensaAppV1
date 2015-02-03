@@ -34,8 +34,8 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
 
 		// Give the SlidingTabLayout the ViewPager
 		SlidingTabLayout slidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
-        // Center the tabs in the layout
-        slidingTabLayout.setDistributeEvenly(true);
+		// Center the tabs in the layout
+		slidingTabLayout.setDistributeEvenly(true);
 		// Customize tab color
 		slidingTabLayout.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
 			@Override
@@ -47,17 +47,17 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
 		slidingTabLayout.setOnPageChangeListener(new OnPageChangeListener() {
 			@Override
 			public void onPageSelected(int arg0) {
-				
+
 			}
-			
+
 			@Override
 			public void onPageScrolled(int arg0, float arg1, int arg2) {
-				
+
 			}
-			
+
 			@Override
 			public void onPageScrollStateChanged(int arg0) {
-				
+
 			}
 		});
 	}
@@ -70,7 +70,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
 
 	@Override
 	public void onNavigationDrawerItemSelected(int position) {
-		Toast.makeText(this, "Menu item selected -> " + position, Toast.LENGTH_SHORT).show();
+		Toast.makeText(this, "Woche selected selected -> " + position, Toast.LENGTH_SHORT).show();
 	}
 
 	@Override

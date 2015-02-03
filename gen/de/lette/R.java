@@ -1692,16 +1692,21 @@ containing a value of this type.
         public static final int expand_activities_button=0x7f090022;
         public static final int expanded_menu=0x7f090028;
         public static final int fragment_drawer=0x7f090044;
+        public static final int hauptspeisen=0x7f09004b;
+        public static final int hauptspeisenTitel=0x7f09004a;
         public static final int home=0x7f090000;
         public static final int homeAsUp=0x7f09000e;
+        public static final int hscrollview=0x7f090047;
         public static final int icon=0x7f090026;
         public static final int ifRoom=0x7f090016;
         public static final int image=0x7f090023;
         public static final int item_name=0x7f090045;
         public static final int listMode=0x7f09000a;
         public static final int list_item=0x7f090025;
-        public static final int menu_search=0x7f090047;
+        public static final int menu_search=0x7f09004e;
         public static final int middle=0x7f09001d;
+        public static final int nachspeisen=0x7f09004d;
+        public static final int nachspeisenTitel=0x7f09004c;
         public static final int never=0x7f090017;
         public static final int none=0x7f09000f;
         public static final int normal=0x7f09000b;
@@ -1731,6 +1736,8 @@ containing a value of this type.
         public static final int toolbar_actionbar=0x7f09003f;
         public static final int up=0x7f090001;
         public static final int useLogo=0x7f090013;
+        public static final int vorspeisen=0x7f090049;
+        public static final int vorspeisenTitel=0x7f090048;
         public static final int withText=0x7f090018;
         public static final int wrap_content=0x7f090009;
     }
