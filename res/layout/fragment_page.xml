@@ -18,7 +18,8 @@
             android:background="@color/myPrimaryColor"
             android:gravity="center_horizontal"
             android:text="Vorspeisen"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textColor="@color/primary_text_default_material_dark" />
 
         <TableLayout
             android:id="@+id/vorspeisen"
@@ -37,7 +38,8 @@
             android:background="@color/myPrimaryColor"
             android:gravity="center_horizontal"
             android:text="Hauptspeisen"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textColor="@color/primary_text_default_material_dark" />
 
         <TableLayout
             android:id="@+id/hauptspeisen"
@@ -56,7 +58,8 @@
             android:background="@color/myPrimaryColor"
             android:gravity="center_horizontal"
             android:text="Nachspeisen"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textColor="@color/primary_text_default_material_dark" />
 
         <TableLayout
             android:id="@+id/nachspeisen"
