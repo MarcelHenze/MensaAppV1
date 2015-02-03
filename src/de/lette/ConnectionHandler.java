@@ -18,11 +18,11 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 
-import de.lette.mensaplan.ClientData;
-import de.lette.mensaplan.Speise;
-import de.lette.mensaplan.SpeiseArt;
-import de.lette.mensaplan.Termin;
-import de.lette.mensaplan.Zusatzstoff;
+import de.lette.mensaplan.server.ClientData;
+import de.lette.mensaplan.server.Speise;
+import de.lette.mensaplan.server.SpeiseArt;
+import de.lette.mensaplan.server.Termin;
+import de.lette.mensaplan.server.Zusatzstoff;
 
 public class ConnectionHandler {
 	public static String urlToServer = "";

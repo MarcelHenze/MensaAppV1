@@ -1,4 +1,4 @@
-package de.lette.mensaplan;
+package de.lette.mensaplan.server;
 
 /**
  * Diese Klasse representiert die Enum Speise.typ.

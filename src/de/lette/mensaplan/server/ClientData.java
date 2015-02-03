@@ -1,4 +1,4 @@
-package de.lette.mensaplan;
+package de.lette.mensaplan.server;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;

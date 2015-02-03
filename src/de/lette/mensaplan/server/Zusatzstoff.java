@@ -1,4 +1,4 @@
-package de.lette.mensaplan;
+package de.lette.mensaplan.server;
 
 import com.google.gson.Gson;
 
