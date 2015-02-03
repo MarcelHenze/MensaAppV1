@@ -88,4 +88,8 @@ public class PageFragment extends Fragment {
 		}
 		return view;
 	}
+	
+	public int getPageNumber() {
+		return mPage;
+	}
 }
