@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.format.Time;
 import android.view.Menu;
 import android.widget.Toast;
 
@@ -46,20 +47,23 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
 		slidingTabLayout.setViewPager(viewPager);
 		slidingTabLayout.setOnPageChangeListener(new OnPageChangeListener() {
 			@Override
-			public void onPageSelected(int arg0) {
-
-			}
+			public void onPageSelected(int arg0) {}
 
 			@Override
-			public void onPageScrolled(int arg0, float arg1, int arg2) {
-
-			}
+			public void onPageScrolled(int arg0, float arg1, int arg2) {}
 
 			@Override
-			public void onPageScrollStateChanged(int arg0) {
-
-			}
+			public void onPageScrollStateChanged(int arg0) {}
 		});
+		
+		//Setzt den Tab auf den Aktuellen Tag.
+				Time today = new Time(Time.getCurrentTimezone());
+				today.setToNow();
+				if(today.weekDay-1 < 4){
+					viewPager.setCurrentItem(today.weekDay-1);
+				} else {
+					viewPager.setCurrentItem(0);
+				}
 	}
 
 	@Override
