@@ -1,7 +1,11 @@
 package de.lette.mensaplan.server;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -70,7 +74,7 @@ public class ClientData {
 		}
 		return returnSet;
 	}
-	
+
 	/**
 	 * Sucht die Speise für den gegebenen Termin und gibt sie zurück.
 	 * 
@@ -88,10 +92,9 @@ public class ClientData {
 		}
 		return null;
 	}
-	
+
 	/**
-	 * Sucht alle Speisen für die gegebenen Termine und gibt sie in einer Map zurück.
-	 * Jedem Termin sind n Speisen zugeordnet.
+	 * Sucht alle Speisen für die gegebenen Termine und gibt sie in einer Map zurück. Jedem Termin sind n Speisen zugeordnet.
 	 * 
 	 * @param termine
 	 *            die Termine, zu denen die Speisen gesucht werden sollen
@@ -111,6 +114,34 @@ public class ClientData {
 		return returnMap;
 	}
 
+	/**
+	 * Gibt eine Map zurück, die zu jedem Date-Objekt eine Liste mit Speisen enthällt. Achtung! Nicht jedes unterschiedliche Date-Objekt muss auch
+	 * gleich ein anderer Tag sein!<br>
+	 * Bsp: new Date(1000000) und new Date(1000001) sind der selbe Tag aber dennoch unterschiedliche Date-Objekte
+	 * 
+	 * @return Map mit Speisen zu einem Date
+	 */
+	public Map<Date, List<Speise>> getSpeisenForDate() {
+		Map<Date, List<Speise>> returnMap = new LinkedHashMap<Date, List<Speise>>();
+		Set<Date> helpSet = new HashSet<Date>();
+		for(Termin t : termine) {
+			helpSet.add(t.getJavaDatum());
+		}
+		for(Date d : helpSet) {
+			List<Speise> helpList = new ArrayList<Speise>();
+			for(Termin t : termine) {
+				if(t.getJavaDatum().equals(d)) {
+					Speise s = getSpeisen(t, speisen);
+					if(s != null) {
+						helpList.add(s);
+					}
+				}
+			}
+			if(!helpList.isEmpty()) returnMap.put(d, helpList);
+		}
+		return returnMap;
+	}
+
 	public void setSpeisen(Set<Speise> speisen) {
 		this.speisen = speisen;
 	}
@@ -118,11 +149,12 @@ public class ClientData {
 	public Set<Zusatzstoff> getZusatzstoffe() {
 		return zusatzstoffe;
 	}
-	
+
 	/**
 	 * Sucht zu einer Speise alle Zusatzstoffe und gibt sie in einem Set zurück.
 	 * 
-	 * @param speise die Speise, deren Zusatzstoffe ermittelt werden sollen.
+	 * @param speise
+	 *            die Speise, deren Zusatzstoffe ermittelt werden sollen.
 	 * @return die Zusatzstoffe zu der Speise in einem Set oder ein leeres Set wenn keine Zusatzstoffe gefunden wurden.
 	 */
 	public Set<Zusatzstoff> getZusatzstoffe(Speise speise) {
