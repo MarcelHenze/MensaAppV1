@@ -55,15 +55,15 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
 			@Override
 			public void onPageScrollStateChanged(int arg0) {}
 		});
-		
-		//Setzt den Tab auf den Aktuellen Tag.
-				Time today = new Time(Time.getCurrentTimezone());
-				today.setToNow();
-				if(today.weekDay-1 < 4){
-					viewPager.setCurrentItem(today.weekDay-1);
-				} else {
-					viewPager.setCurrentItem(0);
-				}
+
+		// Setzt den Tab auf den Aktuellen Tag.
+		Time today = new Time(Time.getCurrentTimezone());
+		today.setToNow();
+		if(today.weekDay - 1 < 4) {
+			viewPager.setCurrentItem(today.weekDay - 1);
+		} else {
+			viewPager.setCurrentItem(0);
+		}
 	}
 
 	@Override
