@@ -18,14 +18,15 @@
             android:background="@color/myPrimaryColor"
             android:gravity="center_horizontal"
             android:text="Vorspeisen"
-            android:textSize="20sp"
-            android:textColor="@color/primary_text_default_material_dark" />
+            android:textColor="@color/primary_text_default_material_dark"
+            android:textSize="20sp" />
 
         <TableLayout
             android:id="@+id/vorspeisen"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/vorspeisenTitel"
+            android:background="@color/background_material_light"
             android:orientation="vertical" >
         </TableLayout>
 
@@ -38,14 +39,15 @@
             android:background="@color/myPrimaryColor"
             android:gravity="center_horizontal"
             android:text="Hauptspeisen"
-            android:textSize="20sp"
-            android:textColor="@color/primary_text_default_material_dark" />
+            android:textColor="@color/primary_text_default_material_dark"
+            android:textSize="20sp" />
 
         <TableLayout
             android:id="@+id/hauptspeisen"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/hauptspeisenTitel"
+            android:background="@color/background_material_light"
             android:orientation="vertical" >
         </TableLayout>
 
@@ -58,14 +60,15 @@
             android:background="@color/myPrimaryColor"
             android:gravity="center_horizontal"
             android:text="Nachspeisen"
-            android:textSize="20sp"
-            android:textColor="@color/primary_text_default_material_dark" />
+            android:textColor="@color/primary_text_default_material_dark"
+            android:textSize="20sp" />
 
         <TableLayout
             android:id="@+id/nachspeisen"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/nachspeisenTitel"
+            android:background="@color/background_material_light"
             android:orientation="vertical" >
         </TableLayout>
     </RelativeLayout>
