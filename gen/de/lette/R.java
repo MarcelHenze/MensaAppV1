@@ -1683,7 +1683,7 @@ containing a value of this type.
         public static final int default_activity_button=0x7f090024;
         public static final int dialog=0x7f090019;
         public static final int disableHome=0x7f09000d;
-        public static final int drawer=0x7f090041;
+        public static final int drawer=0x7f090040;
         public static final int drawerList=0x7f090045;
         public static final int dropdown=0x7f09001a;
         public static final int edit_query=0x7f090033;
@@ -1727,7 +1727,7 @@ containing a value of this type.
         public static final int showCustom=0x7f090010;
         public static final int showHome=0x7f090011;
         public static final int showTitle=0x7f090012;
-        public static final int sliding_tabs=0x7f090040;
+        public static final int sliding_tabs=0x7f090041;
         public static final int split_action_bar=0x7f090004;
         public static final int submit_area=0x7f09003c;
         public static final int tabMode=0x7f09000c;
