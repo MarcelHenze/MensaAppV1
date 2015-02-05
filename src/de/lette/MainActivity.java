@@ -44,6 +44,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
 				return getResources().getColor(R.color.myPrimaryColor);
 			}
 		});
+
 		slidingTabLayout.setViewPager(viewPager);
 		slidingTabLayout.setOnPageChangeListener(new OnPageChangeListener() {
 			@Override
@@ -68,7 +69,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-//		getMenuInflater().inflate(R.menu.main, menu);
+		// getMenuInflater().inflate(R.menu.main, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
 
