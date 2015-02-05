@@ -18,3 +18,5 @@ In dem neuen Fenster w채hlen Sie im Ordner Git "Projects from Git" aus und best�
 Im folgenden Fenster w채hlen Sie "Clone URI" aus und best채tigen mit Next.<br>
 Im Feld "URI" geben Sie nun diesen Link ein: https://github.com/MarcelHenze/MensaAppV1.git und best채tigen zwei mal mit Next.<br>
 In dem folgendem Fenster w채hlen Sie den Ort aus an dem das Projekt gespeichert werden soll und best채tigen zwei mal mit Next und ein mal mit Finish.<br>
+
+##Fertig!
