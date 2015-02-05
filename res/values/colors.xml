@@ -15,6 +15,8 @@
     <color name="myWindowBackground">#DEDEDE</color>
     <color name="myTextPrimaryColor">#FFFFFF</color>
     <color name="myNavigationColor">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="dropShadowColor">#50CCCCCC</color>
 
     <color name="selected_gray">#ffdbdbdb</color>
 </resources>

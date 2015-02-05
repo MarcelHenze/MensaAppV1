@@ -59,6 +59,8 @@ public class PageFragment extends Fragment {
 				iv.setPadding(0, 0, 25, 0);
 				TextView tv = new TextView(getActivity());
 				tv.setTextColor(getResources().getColor(R.color.abc_primary_text_material_light));
+				tv.setTextSize(15f);
+				tv.setPadding(0, 17, 0, 0);
 				tv.setLayoutParams(new TableRow.LayoutParams(0, LayoutParams.WRAP_CONTENT, 1f));
 				tv.setText(speise.getName() + ", " + speise.getKcal() + " kcal, " + speise.getEiweiß() + " Eiweiße, " + speise.getFett() + " Fette, "
 						+ speise.getKohlenhydrate() + " Kohlenhydrate.\r\n");

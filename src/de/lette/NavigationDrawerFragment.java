@@ -83,7 +83,7 @@ public class NavigationDrawerFragment extends Fragment implements NavigationDraw
         mFragmentContainerView = getActivity().findViewById(fragmentId);
         mDrawerLayout = drawerLayout;
         mDrawerLayout.setStatusBarBackgroundColor(
-                getResources().getColor(R.color.myPrimaryDarkColor));
+                getResources().getColor(R.color.background_material_light));
 
         mActionBarDrawerToggle = new ActionBarDrawerToggle(getActivity(), mDrawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close) {
             @Override
@@ -135,9 +135,9 @@ public class NavigationDrawerFragment extends Fragment implements NavigationDraw
 
     public List<NavigationItem> getMenu() {
         List<NavigationItem> items = new ArrayList<NavigationItem>();
-        items.add(new NavigationItem("Woche 1"));
-        items.add(new NavigationItem("Woche 2"));
-        items.add(new NavigationItem("Woche 3"));
+        items.add(new NavigationItem("Woche 1", getResources().getDrawable(R.drawable.ic_calendar)));
+        items.add(new NavigationItem("Woche 2", getResources().getDrawable(R.drawable.ic_calendar)));
+        items.add(new NavigationItem("Woche 3", getResources().getDrawable(R.drawable.ic_calendar)));
         return items;
     }
 

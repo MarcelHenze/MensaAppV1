@@ -41,7 +41,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
 		slidingTabLayout.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
 			@Override
 			public int getIndicatorColor(int position) {
-				return getResources().getColor(R.color.primary_text_default_material_dark);
+				return getResources().getColor(R.color.myPrimaryColor);
 			}
 		});
 		slidingTabLayout.setViewPager(viewPager);
@@ -68,7 +68,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.main, menu);
+//		getMenuInflater().inflate(R.menu.main, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
 

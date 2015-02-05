@@ -6,71 +6,100 @@
     android:layout_below="@+id/hscrollview"
     android:scrollbars="none" >
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp" >
 
-        <TextView
-            android:id="@+id/vorspeisenTitel"
-            android:layout_width="match_parent"
+        <RelativeLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:background="@color/myPrimaryColor"
-            android:gravity="center_horizontal"
-            android:text="Vorspeisen"
-            android:textColor="@color/primary_text_default_material_dark"
-            android:textSize="20sp" />
+            android:background="@drawable/roundedcorners"
+            android:padding="1dp" >
 
-        <TableLayout
-            android:id="@+id/vorspeisen"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/vorspeisenTitel"
-            android:background="@color/background_material_light"
-            android:orientation="vertical" >
-        </TableLayout>
+            <TextView
+                android:id="@+id/vorspeisenTitel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/roundedcornersonlytop"
+                android:gravity="center_horizontal"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Vorspeisen"
+                android:textColor="@color/primary_text_default_material_dark"
+                android:textSize="21sp" />
 
-        <TextView
-            android:id="@+id/hauptspeisenTitel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/vorspeisen"
-            android:layout_marginBottom="10dp"
-            android:background="@color/myPrimaryColor"
-            android:gravity="center_horizontal"
-            android:text="Hauptspeisen"
-            android:textColor="@color/primary_text_default_material_dark"
-            android:textSize="20sp" />
+            <TableLayout
+                android:id="@+id/vorspeisen"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/vorspeisenTitel"
+                android:background="@drawable/roundedcornersonlybottom"
+                android:orientation="vertical"
+                android:padding="10dp" >
+            </TableLayout>
+        </RelativeLayout>
 
-        <TableLayout
-            android:id="@+id/hauptspeisen"
-            android:layout_width="fill_parent"
+        <RelativeLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/hauptspeisenTitel"
-            android:background="@color/background_material_light"
-            android:orientation="vertical" >
-        </TableLayout>
+            android:layout_marginTop="20dp"
+            android:background="@drawable/roundedcorners"
+            android:padding="1dp" >
 
-        <TextView
-            android:id="@+id/nachspeisenTitel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/hauptspeisen"
-            android:layout_marginBottom="10dp"
-            android:background="@color/myPrimaryColor"
-            android:gravity="center_horizontal"
-            android:text="Nachspeisen"
-            android:textColor="@color/primary_text_default_material_dark"
-            android:textSize="20sp" />
+            <TextView
+                android:id="@+id/hauptspeisenTitel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/roundedcornersonlytop"
+                android:gravity="center_horizontal"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Hauptspeisen"
+                android:textColor="@color/primary_text_default_material_dark"
+                android:textSize="21sp" />
 
-        <TableLayout
-            android:id="@+id/nachspeisen"
-            android:layout_width="fill_parent"
+            <TableLayout
+                android:id="@+id/hauptspeisen"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/hauptspeisenTitel"
+                android:background="@drawable/roundedcornersonlybottom"
+                android:orientation="vertical"
+                android:padding="10dp" >
+            </TableLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/nachspeisenTitel"
-            android:background="@color/background_material_light"
-            android:orientation="vertical" >
-        </TableLayout>
-    </RelativeLayout>
+            android:layout_marginTop="20dp"
+            android:background="@drawable/roundedcorners"
+            android:padding="1dp" >
+
+            <TextView
+                android:id="@+id/nachspeisenTitel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/roundedcornersonlytop"
+                android:gravity="center_horizontal"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Nachspeisen"
+                android:textColor="@color/primary_text_default_material_dark"
+                android:textSize="21sp" />
+
+            <TableLayout
+                android:id="@+id/nachspeisen"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nachspeisenTitel"
+                android:background="@drawable/roundedcornersonlybottom"
+                android:orientation="vertical"
+                android:padding="10dp" >
+            </TableLayout>
+        </RelativeLayout>
+    </LinearLayout>
 
 </ScrollView>
