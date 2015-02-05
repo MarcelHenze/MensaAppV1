@@ -1,5 +1,10 @@
 ##Projekt aufsetzen: (Eclipse)
 
+####Vorraussetzungen:
+1. Installierte Android SDK
+2. Android Development Tools für Eclipse
+3. EGit Plugin für Eclipse
+
 ####1. Android Support Libs:
 
 > 
