@@ -6,7 +6,6 @@
 3. EGit Plugin für Eclipse
 
 ####1. Android Support Libs:
-
 > 
 Zum Importieren der Android Support Libs, die für dieses Projekt benötigt werden wählen Sie File -> Import.<br>
 In dem neuen Fenster wählen Sie im Ordner Android "Existing Android Code Into Workspace" aus und bestätigen mit Next.<br>
@@ -16,7 +15,6 @@ Im Anschluss Finish drücken.<br><br>
 Diese Schritte wiederholen Sie für "extras\android\support\v7\recyclerview".
 
 ####2. Klonen des Projekts:
-
 > 
 Zum Klonen des Projekts wählen Sie File -> Import.<br>
 In dem neuen Fenster wählen Sie im Ordner Git "Projects from Git" aus und bestätigen mit Next.<br>
