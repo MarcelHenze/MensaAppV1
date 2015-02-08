@@ -1,8 +1,9 @@
 package de.lette;
 
-import com.google.samples.apps.iosched.ui.widget.SlidingTabLayout;
-
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v4.widget.DrawerLayout;
@@ -12,15 +13,24 @@ import android.text.format.Time;
 import android.view.Menu;
 import android.widget.Toast;
 
+import com.google.samples.apps.iosched.ui.widget.SlidingTabLayout;
+
 public class MainActivity extends ActionBarActivity implements NavigationDrawerCallbacks {
 
 	private Toolbar mToolbar;
 	private NavigationDrawerFragment mNavigationDrawerFragment;
+	private static final String FIRST_LAUNCH = "first_launch";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		
+		if (prefs.getBoolean(FIRST_LAUNCH, true)) {
+			Intent intent = new Intent(this, FirstLaunch.class);
+			startActivity(intent);
+		}
 
 		mToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
 		setSupportActionBar(mToolbar);
@@ -28,8 +38,11 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
 
 		mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.fragment_drawer);
 		mNavigationDrawerFragment.setup(R.id.fragment_drawer, (DrawerLayout) findViewById(R.id.drawer), mToolbar);
+		//Schließe Drawer
+		mNavigationDrawerFragment.closeDrawer();
 
-		// Get the ViewPager and set it's PagerAdapter so that it can display items
+		// Get the ViewPager and set it's PagerAdapter so that it can display
+		// items
 		ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
 		viewPager.setAdapter(new MyFragmentPagerAdapter(getSupportFragmentManager(), MainActivity.this));
 
@@ -48,19 +61,22 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
 		slidingTabLayout.setViewPager(viewPager);
 		slidingTabLayout.setOnPageChangeListener(new OnPageChangeListener() {
 			@Override
-			public void onPageSelected(int arg0) {}
+			public void onPageSelected(int arg0) {
+			}
 
 			@Override
-			public void onPageScrolled(int arg0, float arg1, int arg2) {}
+			public void onPageScrolled(int arg0, float arg1, int arg2) {
+			}
 
 			@Override
-			public void onPageScrollStateChanged(int arg0) {}
+			public void onPageScrollStateChanged(int arg0) {
+			}
 		});
 
 		// Setzt den Tab auf den Aktuellen Tag.
 		Time today = new Time(Time.getCurrentTimezone());
 		today.setToNow();
-		if(today.weekDay - 1 < 4) {
+		if (today.weekDay - 1 < 4) {
 			viewPager.setCurrentItem(today.weekDay - 1);
 		} else {
 			viewPager.setCurrentItem(0);
@@ -75,12 +91,14 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
 
 	@Override
 	public void onNavigationDrawerItemSelected(int position) {
-		Toast.makeText(this, "Woche selected selected -> " + position, Toast.LENGTH_SHORT).show();
+		Toast.makeText(this, "Woche selected -> " + position, Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
 	public void onBackPressed() {
-		if(mNavigationDrawerFragment.isDrawerOpen()) mNavigationDrawerFragment.closeDrawer();
-		else super.onBackPressed();
+		if (mNavigationDrawerFragment.isDrawerOpen())
+			mNavigationDrawerFragment.closeDrawer();
+		else
+			super.onBackPressed();
 	}
 }

@@ -5,20 +5,26 @@ import java.net.URISyntaxException;
 
 import org.apache.http.client.ClientProtocolException;
 
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
+
+import com.larvalabs.svgandroid.SVG;
+import com.larvalabs.svgandroid.SVGParser;
+
 import de.lette.mensaplan.server.ClientData;
 import de.lette.mensaplan.server.Speise;
 import de.lette.mensaplan.server.SpeiseArt;
 import de.lette.mensaplan.server.Termin;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager.LayoutParams;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
 
 // In this case, the fragment displays simple text based on the page
 public class PageFragment extends Fragment {
@@ -42,21 +48,35 @@ public class PageFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_page, container, false);
-		TableLayout vorspeisen = (TableLayout) view.findViewById(R.id.vorspeisen);
-		TableLayout hauptspeisen = (TableLayout) view.findViewById(R.id.hauptspeisen);
-		TableLayout nachspeisen = (TableLayout) view.findViewById(R.id.nachspeisen);
 		try {
+			TableLayout vorspeisen = (TableLayout) view.findViewById(R.id.vorspeisen);
+			TableLayout hauptspeisen = (TableLayout) view.findViewById(R.id.hauptspeisen);
+			TableLayout nachspeisen = (TableLayout) view.findViewById(R.id.nachspeisen);
 			ClientData data = ConnectionHandler.getClientData();
+			
+			SVG vorspeiseSVG = SVGParser.getSVGFromResource(getResources(), R.raw.vorspeise);
+			SVG hauptspeiseSVG = SVGParser.getSVGFromResource(getResources(), R.raw.hauptspeise);
+			SVG nachspeiseSVG = SVGParser.getSVGFromResource(getResources(), R.raw.nachspeise);
+            Drawable vorspeise = vorspeiseSVG.createPictureDrawable();
+            Drawable hauptspeise = hauptspeiseSVG.createPictureDrawable();
+            Drawable nachspeise = nachspeiseSVG.createPictureDrawable();
+            
+            
 			for(Termin t : data.getTermine()) {
 				Speise speise = data.getSpeisen(t, data.getSpeisen());
 				// Log.d("MensaPlan", speise.getName() +" am "
 				// +t.getDatum());
+	            
 				TableRow tr = new TableRow(getActivity());
 				TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
 				tr.setLayoutParams(lp);
-				ImageView iv = new ImageView(getActivity());
-				iv.setX(10);
-				iv.setPadding(0, 0, 25, 0);
+				
+				ImageView icon = new ImageView(getActivity());
+				//Funzt net
+				LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(100, 100);
+				icon.setLayoutParams(layoutParams);
+				icon.setPadding(0, 0, 25, 0);
+				
 				TextView tv = new TextView(getActivity());
 				tv.setTextColor(getResources().getColor(R.color.abc_primary_text_material_light));
 				tv.setTextSize(15f);
@@ -66,18 +86,19 @@ public class PageFragment extends Fragment {
 						+ speise.getKohlenhydrate() + " Kohlenhydrate.\r\n");
 				tv.append("Beachte: " + speise.getBeachte() + "\r\n");
 				tv.append("Preis: " + t.getPreis() + "€");
-				tr.addView(iv);
+				tr.addView(icon);
 				tr.addView(tv);
 				if(speise.getArt() == SpeiseArt.VORSPEISE) {
-					iv.setImageResource(R.drawable.vorspeise);
+					icon.setImageDrawable(vorspeise);
 					vorspeisen.addView(tr);
 				} else if(speise.getArt() == SpeiseArt.VOLLKOST) {
-					iv.setImageResource(R.drawable.hauptspeise);
+					icon.setImageDrawable(hauptspeise);
 					hauptspeisen.addView(tr);
 				} else if(speise.getArt() == SpeiseArt.DESSERT) {
-					iv.setImageResource(R.drawable.nachspeise);
+					icon.setImageDrawable(nachspeise);
 					nachspeisen.addView(tr);
 				}
+				icon.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 			}
 		} catch(ClientProtocolException e) {
 			e.printStackTrace();
