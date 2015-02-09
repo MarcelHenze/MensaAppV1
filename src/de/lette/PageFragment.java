@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -45,6 +44,9 @@ public class PageFragment extends Fragment {
 		mPage = getArguments().getInt(ARG_PAGE);
 	}
 
+	/**
+	 * Fügt die Speisen hinzu und zeigt sie an.
+	 */
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_page, container, false);
@@ -55,11 +57,11 @@ public class PageFragment extends Fragment {
 			ClientData data = ConnectionHandler.getClientData();
 			
 			SVG vorspeiseSVG = SVGParser.getSVGFromResource(getResources(), R.raw.vorspeise);
-			SVG hauptspeiseSVG = SVGParser.getSVGFromResource(getResources(), R.raw.hauptspeise);
-			SVG nachspeiseSVG = SVGParser.getSVGFromResource(getResources(), R.raw.nachspeise);
+//			SVG hauptspeiseSVG = SVGParser.getSVGFromResource(getResources(), R.raw.hauptspeise);
+//			SVG nachspeiseSVG = SVGParser.getSVGFromResource(getResources(), R.raw.nachspeise);
             Drawable vorspeise = vorspeiseSVG.createPictureDrawable();
-            Drawable hauptspeise = hauptspeiseSVG.createPictureDrawable();
-            Drawable nachspeise = nachspeiseSVG.createPictureDrawable();
+//            Drawable hauptspeise = hauptspeiseSVG.createPictureDrawable();
+//            Drawable nachspeise = nachspeiseSVG.createPictureDrawable();
             
             
 			for(Termin t : data.getTermine()) {
@@ -72,10 +74,8 @@ public class PageFragment extends Fragment {
 				tr.setLayoutParams(lp);
 				
 				ImageView icon = new ImageView(getActivity());
-				//Funzt net
-				LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(100, 100);
-				icon.setLayoutParams(layoutParams);
 				icon.setPadding(0, 0, 25, 0);
+				icon.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 				
 				TextView tv = new TextView(getActivity());
 				tv.setTextColor(getResources().getColor(R.color.abc_primary_text_material_light));
@@ -92,13 +92,12 @@ public class PageFragment extends Fragment {
 					icon.setImageDrawable(vorspeise);
 					vorspeisen.addView(tr);
 				} else if(speise.getArt() == SpeiseArt.VOLLKOST) {
-					icon.setImageDrawable(hauptspeise);
+//					icon.setImageDrawable(hauptspeise);
 					hauptspeisen.addView(tr);
 				} else if(speise.getArt() == SpeiseArt.DESSERT) {
-					icon.setImageDrawable(nachspeise);
+//					icon.setImageDrawable(nachspeise);
 					nachspeisen.addView(tr);
 				}
-				icon.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 			}
 		} catch(ClientProtocolException e) {
 			e.printStackTrace();

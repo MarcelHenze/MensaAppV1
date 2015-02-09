@@ -1,8 +1,9 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/roundedcorners"
+    android:background="@color/white"
+    android:orientation="vertical"
     android:padding="1dp"
     tools:context="${relativePackage}.${activityClass}" >
 
@@ -13,13 +14,16 @@
         android:text="@string/firstLaunch"
         android:textColor="@color/abc_primary_text_material_light" />
 
-    <Button
-        android:id="@+id/okay"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="119dp"
-        android:text="Okay" />
+        android:layout_marginTop="-100dp" >
+        <Button
+            android:id="@+id/okay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Okay" />
+    </RelativeLayout>
 
-</RelativeLayout>
+</LinearLayout>
