@@ -70,7 +70,7 @@ public class PageFragment extends Fragment {
 //				int week = c.get(Calendar.WEEK_OF_MONTH);
 				int day = c.get(Calendar.DAY_OF_WEEK);
 
-				 if(day != mPage) continue;
+				 if(day != mPage + 1) continue;
 
 				// Vorspeisen
 				for(Speise speise : data.getSpeisen(SpeiseArt.VORSPEISE, entry.getValue().keySet())) {
