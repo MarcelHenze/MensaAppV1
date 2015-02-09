@@ -1695,6 +1695,8 @@ containing a value of this type.
         public static final int expand_activities_button=0x7f0a0022;
         public static final int expanded_menu=0x7f0a0028;
         public static final int fragment_drawer=0x7f0a0044;
+        public static final int fragment_page_entry_imageView=0x7f0a004d;
+        public static final int fragment_page_entry_textView=0x7f0a004e;
         public static final int hauptspeisen=0x7f0a004a;
         public static final int hauptspeisenTitel=0x7f0a0049;
         public static final int home=0x7f0a0000;
@@ -1705,7 +1707,7 @@ containing a value of this type.
         public static final int item_name=0x7f0a0045;
         public static final int listMode=0x7f0a000a;
         public static final int list_item=0x7f0a0025;
-        public static final int menu_search=0x7f0a004d;
+        public static final int menu_search=0x7f0a004f;
         public static final int middle=0x7f0a001d;
         public static final int nachspeisen=0x7f0a004c;
         public static final int nachspeisenTitel=0x7f0a004b;
