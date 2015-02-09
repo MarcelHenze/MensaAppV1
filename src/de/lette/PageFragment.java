@@ -2,6 +2,11 @@ package de.lette;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.apache.http.client.ClientProtocolException;
 
@@ -11,13 +16,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
-import android.widget.TableLayout;
-import android.widget.TableRow;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.larvalabs.svgandroid.SVG;
 import com.larvalabs.svgandroid.SVGParser;
 
 import de.lette.mensaplan.server.ClientData;
@@ -51,52 +53,60 @@ public class PageFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_page, container, false);
 		try {
-			TableLayout vorspeisen = (TableLayout) view.findViewById(R.id.vorspeisen);
-			TableLayout hauptspeisen = (TableLayout) view.findViewById(R.id.hauptspeisen);
-			TableLayout nachspeisen = (TableLayout) view.findViewById(R.id.nachspeisen);
 			ClientData data = ConnectionHandler.getClientData();
-			
-			SVG vorspeiseSVG = SVGParser.getSVGFromResource(getResources(), R.raw.vorspeise);
-//			SVG hauptspeiseSVG = SVGParser.getSVGFromResource(getResources(), R.raw.hauptspeise);
-//			SVG nachspeiseSVG = SVGParser.getSVGFromResource(getResources(), R.raw.nachspeise);
-            Drawable vorspeise = vorspeiseSVG.createPictureDrawable();
-//            Drawable hauptspeise = hauptspeiseSVG.createPictureDrawable();
-//            Drawable nachspeise = nachspeiseSVG.createPictureDrawable();
-            
-            
-			for(Termin t : data.getTermine()) {
-				Speise speise = data.getSpeisen(t, data.getSpeisen());
-				// Log.d("MensaPlan", speise.getName() +" am "
-				// +t.getDatum());
-	            
-				TableRow tr = new TableRow(getActivity());
-				TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
-				tr.setLayoutParams(lp);
-				
-				ImageView icon = new ImageView(getActivity());
-				icon.setPadding(0, 0, 25, 0);
-				icon.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-				
-				TextView tv = new TextView(getActivity());
-				tv.setTextColor(getResources().getColor(R.color.abc_primary_text_material_light));
-				tv.setTextSize(15f);
-				tv.setPadding(0, 17, 0, 0);
-				tv.setLayoutParams(new TableRow.LayoutParams(0, LayoutParams.WRAP_CONTENT, 1f));
-				tv.setText(speise.getName() + ", " + speise.getKcal() + " kcal, " + speise.getEiweiß() + " Eiweiße, " + speise.getFett() + " Fette, "
-						+ speise.getKohlenhydrate() + " Kohlenhydrate.\r\n");
-				tv.append("Beachte: " + speise.getBeachte() + "\r\n");
-				tv.append("Preis: " + t.getPreis() + "€");
-				tr.addView(icon);
-				tr.addView(tv);
-				if(speise.getArt() == SpeiseArt.VORSPEISE) {
-					icon.setImageDrawable(vorspeise);
-					vorspeisen.addView(tr);
-				} else if(speise.getArt() == SpeiseArt.VOLLKOST) {
-//					icon.setImageDrawable(hauptspeise);
-					hauptspeisen.addView(tr);
-				} else if(speise.getArt() == SpeiseArt.DESSERT) {
-//					icon.setImageDrawable(nachspeise);
-					nachspeisen.addView(tr);
+			Drawable vorspeise = SVGParser.getSVGFromResource(getResources(), R.raw.vorspeise).createPictureDrawable();
+			Drawable hauptspeise = SVGParser.getSVGFromResource(getResources(), R.raw.hauptspeise).createPictureDrawable();
+			Drawable nachspeise = SVGParser.getSVGFromResource(getResources(), R.raw.nachspeise).createPictureDrawable();
+			LinearLayout vorspeisen = (LinearLayout) view.findViewById(R.id.vorspeisen);
+			LinearLayout hauptspeisen = (LinearLayout) view.findViewById(R.id.hauptspeisen);
+			LinearLayout nachspeisen = (LinearLayout) view.findViewById(R.id.nachspeisen);
+
+			for(Entry<Date, Map<Speise, Termin>> entry : data.getSpeisenForDate().entrySet()) {
+				// Date Stuff
+				Calendar c = Calendar.getInstance(Locale.getDefault());
+				c.setTime(entry.getKey());
+				// int year = c.get(Calendar.YEAR);
+				// int mounth = c.get(Calendar.MONTH);
+//				int week = c.get(Calendar.WEEK_OF_MONTH);
+				int day = c.get(Calendar.DAY_OF_WEEK);
+
+				 if(day != mPage) continue;
+
+				// Vorspeisen
+				for(Speise speise : data.getSpeisen(SpeiseArt.VORSPEISE, entry.getValue().keySet())) {
+					View newView = inflater.inflate(R.layout.fragment_page_entry, container, false);
+					ImageView iv = (ImageView) newView.findViewById(R.id.fragment_page_entry_imageView);
+					iv.setImageDrawable(vorspeise);
+					TextView tv = (TextView) newView.findViewById(R.id.fragment_page_entry_textView);
+					tv.setText(speise.getName() + ", " + speise.getKcal() + " kcal, " + speise.getEiweiß() + " Eiweiße, " + speise.getFett()
+							+ " Fette, " + speise.getKohlenhydrate() + " Kohlenhydrate.\r\n");
+					tv.append("Beachte: " + speise.getBeachte() + "\r\n");
+					tv.append("Preis: " + entry.getValue().get(speise).getPreis() + "€");
+					vorspeisen.addView(newView);
+				}
+				// Vollkost
+				for(Speise speise : data.getSpeisen(SpeiseArt.VOLLKOST, entry.getValue().keySet())) {
+					View newView = inflater.inflate(R.layout.fragment_page_entry, container, false);
+					ImageView iv = (ImageView) newView.findViewById(R.id.fragment_page_entry_imageView);
+					iv.setImageDrawable(hauptspeise);
+					TextView tv = (TextView) newView.findViewById(R.id.fragment_page_entry_textView);
+					tv.setText(speise.getName() + ", " + speise.getKcal() + " kcal, " + speise.getEiweiß() + " Eiweiße, " + speise.getFett()
+							+ " Fette, " + speise.getKohlenhydrate() + " Kohlenhydrate.\r\n");
+					tv.append("Beachte: " + speise.getBeachte() + "\r\n");
+					tv.append("Preis: " + entry.getValue().get(speise).getPreis() + "€");
+					hauptspeisen.addView(newView);
+				}
+				// Dessert
+				for(Speise speise : data.getSpeisen(SpeiseArt.DESSERT, entry.getValue().keySet())) {
+					View newView = inflater.inflate(R.layout.fragment_page_entry, container, false);
+					ImageView iv = (ImageView) newView.findViewById(R.id.fragment_page_entry_imageView);
+					iv.setImageDrawable(nachspeise);
+					TextView tv = (TextView) newView.findViewById(R.id.fragment_page_entry_textView);
+					tv.setText(speise.getName() + ", " + speise.getKcal() + " kcal, " + speise.getEiweiß() + " Eiweiße, " + speise.getFett()
+							+ " Fette, " + speise.getKohlenhydrate() + " Kohlenhydrate.\r\n");
+					tv.append("Beachte: " + speise.getBeachte() + "\r\n");
+					tv.append("Preis: " + entry.getValue().get(speise).getPreis() + "€");
+					nachspeisen.addView(newView);
 				}
 			}
 		} catch(ClientProtocolException e) {
@@ -110,7 +120,7 @@ public class PageFragment extends Fragment {
 		}
 		return view;
 	}
-	
+
 	public int getPageNumber() {
 		return mPage;
 	}

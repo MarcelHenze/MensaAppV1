@@ -1,11 +1,10 @@
 package de.lette.mensaplan.server;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -54,7 +53,21 @@ public class ClientData {
 	 * @return ein Set, welches alle Speisen beinhaltet, die der SpeiseArt entsprechen oder ein leeres Set wenn keine Speisen gefunden wurden
 	 */
 	public Set<Speise> getSpeisen(SpeiseArt speiseArt) {
-		return getSpeisen(new SpeiseArt[] { speiseArt });
+		return getSpeisen(new SpeiseArt[] { speiseArt }, speisen);
+	}
+
+	/**
+	 * Filtert alle Speisen nach der gegebenen SpeiseArt und gibt ein Set mit den gefundenen Speisen zurück. Das Set ist leer, wenn keine Speisen zu
+	 * der gegebenen SpeiseArt vorhanden sind.
+	 * 
+	 * @param speiseArt
+	 *            die Art der Speise nach der gefiltert werden soll
+	 * @param speisen
+	 *            die Speisen, die durchsucht werden sollen.
+	 * @return ein Set, welches alle Speisen beinhaltet, die der SpeiseArt entsprechen oder ein leeres Set wenn keine Speisen gefunden wurden
+	 */
+	public Set<Speise> getSpeisen(SpeiseArt speiseArt, Collection<Speise> speisen) {
+		return getSpeisen(new SpeiseArt[] { speiseArt }, speisen);
 	}
 
 	/**
@@ -66,6 +79,20 @@ public class ClientData {
 	 * @return ein Set, welches alle Speisen beinhaltet, die den SpeiseArten entsprechen oder ein leeres Set wenn keine Speisen gefunden wurden
 	 */
 	public Set<Speise> getSpeisen(SpeiseArt[] speiseArten) {
+		return getSpeisen(speiseArten, speisen);
+	}
+
+	/**
+	 * Filtert alle Speisen nach den gegebenen SpeiseArten und gibt ein Set mit den gefundenen Speisen zurück. Das Set ist leer, wenn keine Speisen zu
+	 * den gegebenen SpeiseArten vorhanden sind.
+	 * 
+	 * @param speiseArten
+	 *            die Arten der Speise nach denen gefiltert werden soll
+	 * @param speisen
+	 *            die Speisen, die durchsucht werden sollen.
+	 * @return ein Set, welches alle Speisen beinhaltet, die den SpeiseArten entsprechen oder ein leeres Set wenn keine Speisen gefunden wurden
+	 */
+	public Set<Speise> getSpeisen(SpeiseArt[] speiseArten, Collection<Speise> speisen) {
 		Set<Speise> returnSet = new LinkedHashSet<Speise>();
 		for(Speise s : speisen) {
 			for(SpeiseArt art : speiseArten) {
@@ -84,7 +111,7 @@ public class ClientData {
 	 *            die Speisen, die durchsucht werden müssen
 	 * @return die Speise zu dem Termin oder null, falls keine Speise zum Termin existiert.
 	 */
-	public Speise getSpeisen(Termin termin, Set<Speise> speisen) {
+	public Speise getSpeise(Termin termin, Set<Speise> speisen) {
 		for(Speise s : speisen) {
 			if(termin.getSpeiseId() == s.getId()) {
 				return s;
@@ -115,29 +142,29 @@ public class ClientData {
 	}
 
 	/**
-	 * Gibt eine Map zurück, die zu jedem Date-Objekt eine Liste mit Speisen enthällt. Achtung! Nicht jedes unterschiedliche Date-Objekt muss auch
+	 * Gibt eine Map zurück, die zu jedem Date-Objekt eine Map mit einem Termin zu einer Speise enthällt. Achtung! Nicht jedes unterschiedliche Date-Objekt muss auch
 	 * gleich ein anderer Tag sein!<br>
 	 * Bsp: new Date(1000000) und new Date(1000001) sind der selbe Tag aber dennoch unterschiedliche Date-Objekte
 	 * 
-	 * @return Map mit Speisen zu einem Date
+	 * @return Map mit einer Map mit einem Termin zu einer Speise zu einem Date
 	 */
-	public Map<Date, List<Speise>> getSpeisenForDate() {
-		Map<Date, List<Speise>> returnMap = new LinkedHashMap<Date, List<Speise>>();
+	public Map<Date, Map<Speise, Termin>> getSpeisenForDate() {
+		Map<Date, Map<Speise, Termin>> returnMap = new LinkedHashMap<Date, Map<Speise, Termin>>();
 		Set<Date> helpSet = new HashSet<Date>();
 		for(Termin t : termine) {
 			helpSet.add(t.getJavaDatum());
 		}
 		for(Date d : helpSet) {
-			List<Speise> helpList = new ArrayList<Speise>();
+			Map<Speise, Termin> helpMap = new LinkedHashMap<Speise, Termin>();
 			for(Termin t : termine) {
 				if(t.getJavaDatum().equals(d)) {
-					Speise s = getSpeisen(t, speisen);
+					Speise s = getSpeise(t, speisen);
 					if(s != null) {
-						helpList.add(s);
+						helpMap.put(s, t);
 					}
 				}
 			}
-			if(!helpList.isEmpty()) returnMap.put(d, helpList);
+			if(!helpMap.isEmpty()) returnMap.put(d, helpMap);
 		}
 		return returnMap;
 	}

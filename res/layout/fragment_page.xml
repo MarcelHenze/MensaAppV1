@@ -29,7 +29,7 @@
                 android:textColor="@color/primary_text_default_material_dark"
                 android:textSize="21sp" />
 
-            <TableLayout
+            <LinearLayout
                 android:id="@+id/vorspeisen"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
                 android:background="@drawable/roundedcornersonlybottom"
                 android:orientation="vertical"
                 android:padding="10dp" >
-            </TableLayout>
+            </LinearLayout>
         </RelativeLayout>
 
         <RelativeLayout
@@ -59,7 +59,7 @@
                 android:textColor="@color/primary_text_default_material_dark"
                 android:textSize="21sp" />
 
-            <TableLayout
+            <LinearLayout
                 android:id="@+id/hauptspeisen"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
                 android:background="@drawable/roundedcornersonlybottom"
                 android:orientation="vertical"
                 android:padding="10dp" >
-            </TableLayout>
+            </LinearLayout>
         </RelativeLayout>
 
         <RelativeLayout
@@ -89,7 +89,7 @@
                 android:textColor="@color/primary_text_default_material_dark"
                 android:textSize="21sp" />
 
-            <TableLayout
+            <LinearLayout
                 android:id="@+id/nachspeisen"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -97,7 +97,7 @@
                 android:background="@drawable/roundedcornersonlybottom"
                 android:orientation="vertical"
                 android:padding="10dp" >
-            </TableLayout>
+            </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
 

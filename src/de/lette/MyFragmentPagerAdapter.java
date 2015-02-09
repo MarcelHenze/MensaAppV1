@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.util.Log;
 
 public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
 	private String tabTitles[] = new String[] { "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag" };
@@ -23,6 +24,7 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
 
 	@Override
 	public Fragment getItem(int position) {
+		Log.i("DATESTUFF", "position" +position);
 		return PageFragment.newInstance(position + 1);
 	}
 
