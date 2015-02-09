@@ -10,7 +10,7 @@
 Zum Importieren der Android Support Libs, die für dieses Projekt benötigt werden wählen Sie File -> Import.<br>
 In dem neuen Fenster wählen Sie im Ordner Android "Existing Android Code Into Workspace" aus und bestätigen mit Next. Danach geben Sie im Feld "Root Directory" den Pfad zur Android SDK an und hängen "\extras\android\support\v7\appcompat" an.<br> Dies könnte dann so aussehen:<br><br>
 "C:\android-sdk-windows\extras\android\support\v7"<br><br>
-In der Liste "Projects" wählen Sie dann "appcompat" und "recyclerview"
+In der Liste "Projects" wählen Sie dann "appcompat" und "recyclerview".
 Im Anschluss Finish drücken.<br>
 Zusätzlich müssen Sie das Projekt "TestActivity" zu einem Library Projekt machen. Dazu wählen Sie das Projekt mit Rechtsklick aus, wählen "Properties" und setzten im Menüpunkt "Android" ganz unten den Haken bei "Is Library".
 
