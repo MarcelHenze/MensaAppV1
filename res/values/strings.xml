@@ -7,9 +7,9 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_readme">Readme</string>
     <string name="hello_world">Hello world!</string>
-    <string name="firstLaunch">Willkommen in der Lette MensaAPP.\n \n 
-        Diese APP ist ausschließlich für Lehrkräfte und SchülerInnen des Lette-Vereins in Berlin gedacht.
-        Außenstehenden ist der Besuch der Mensa und das dortige speisen verboten.\n \n
-        Mit dem drücken des Okay Buttons bestätigen Sie, dass sie obriges gelesen und zugestimmt haben.</string>
+    <string name="firstLaunch">Willkommen in der Lette MensaAPP.
+        \n\nDiese APP ist ausschließlich für Lehrkräfte und SchülerInnen des Lette-Vereins in Berlin gedacht.
+        Außenstehenden ist der Besuch der Mensa und das dortige speisen verboten.
+      	\n\nMit dem drücken des Okay Buttons bestätigen Sie, dass sie obriges gelesen und zugestimmt haben.</string>
 
 </resources>

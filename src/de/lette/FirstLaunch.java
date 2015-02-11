@@ -21,19 +21,21 @@ public class FirstLaunch extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_first_launch);
-
+		
+//		TextView tv = (TextView) findViewById(R.id.readme);
+//		tv.setMovementMethod(new ScrollingMovementMethod());
 		Button button = (Button) findViewById(R.id.okay);
 		button.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				SharedPreferences prefs = PreferenceManager
-						.getDefaultSharedPreferences(FirstLaunch.this);
+				SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(FirstLaunch.this);
 				SharedPreferences.Editor edit = prefs.edit();
 				edit.putBoolean(FIRST_LAUNCH, false);
 				edit.commit();
 				finish();
 			}
 		});
+
 	}
 
 	/**

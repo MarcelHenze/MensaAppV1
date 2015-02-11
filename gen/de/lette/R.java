@@ -1660,9 +1660,10 @@ containing a value of this type.
         public static final int ic_calendar=0x7f020035;
         public static final int ic_launcher=0x7f020036;
         public static final int ic_menu_check=0x7f020037;
-        public static final int roundedcorners=0x7f020038;
-        public static final int roundedcornersonlybottom=0x7f020039;
-        public static final int roundedcornersonlytop=0x7f02003a;
+        public static final int roundedbutton=0x7f020038;
+        public static final int roundedcorners=0x7f020039;
+        public static final int roundedcornersonlybottom=0x7f02003a;
+        public static final int roundedcornersonlytop=0x7f02003b;
     }
     public static final class id {
         public static final int action_bar=0x7f0a0031;
