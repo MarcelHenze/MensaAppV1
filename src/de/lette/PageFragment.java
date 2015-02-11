@@ -77,6 +77,7 @@ public class PageFragment extends Fragment {
 					View newView = inflater.inflate(R.layout.fragment_page_entry, container, false);
 					ImageView iv = (ImageView) newView.findViewById(R.id.fragment_page_entry_imageView);
 					iv.setImageDrawable(vorspeise);
+					iv.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 					TextView tv = (TextView) newView.findViewById(R.id.fragment_page_entry_textView);
 					tv.setText(speise.getName() + ", " + speise.getKcal() + " kcal, " + speise.getEiweiß() + " Eiweiße, " + speise.getFett()
 							+ " Fette, " + speise.getKohlenhydrate() + " Kohlenhydrate.\r\n");
@@ -89,6 +90,7 @@ public class PageFragment extends Fragment {
 					View newView = inflater.inflate(R.layout.fragment_page_entry, container, false);
 					ImageView iv = (ImageView) newView.findViewById(R.id.fragment_page_entry_imageView);
 					iv.setImageDrawable(hauptspeise);
+					iv.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 					TextView tv = (TextView) newView.findViewById(R.id.fragment_page_entry_textView);
 					tv.setText(speise.getName() + ", " + speise.getKcal() + " kcal, " + speise.getEiweiß() + " Eiweiße, " + speise.getFett()
 							+ " Fette, " + speise.getKohlenhydrate() + " Kohlenhydrate.\r\n");
@@ -101,6 +103,7 @@ public class PageFragment extends Fragment {
 					View newView = inflater.inflate(R.layout.fragment_page_entry, container, false);
 					ImageView iv = (ImageView) newView.findViewById(R.id.fragment_page_entry_imageView);
 					iv.setImageDrawable(nachspeise);
+					iv.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 					TextView tv = (TextView) newView.findViewById(R.id.fragment_page_entry_textView);
 					tv.setText(speise.getName() + ", " + speise.getKcal() + " kcal, " + speise.getEiweiß() + " Eiweiße, " + speise.getFett()
 							+ " Fette, " + speise.getKohlenhydrate() + " Kohlenhydrate.\r\n");
