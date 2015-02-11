@@ -47,7 +47,7 @@ public class PageFragment extends Fragment {
 	}
 
 	/**
-	 * Fügt die Speisen hinzu und zeigt sie an.
+	 * Fügt die Speisen hinzu und zeigt sie an..
 	 */
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
